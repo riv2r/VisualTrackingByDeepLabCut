@@ -1,32 +1,44 @@
 import deeplabcut
 import os
 
-dir_path = os.getcwd()
-print(dir_path)
-'''
-demo_video_path = dir_path+'test1.mp4'
+class proj:
 
-deeplabcut.create_new_project('test1','riv2r',[demo_video_path],working_directory=dir_path,copy_videos=True)
+    def __init__(self,father_path,project_name,video_name):
+        self.path = father_path+'\\'+project_name
+        self.config_path = self.path+'\\'+'config.yaml'
+        self.video_path = self.path+'\\'+'videos'+'\\'+video_name
 
-config_path = dir_path+'test1-riv2r-2021-04-20\\config.yaml'
+father_path = os.getcwd()
 
-video_path = dir_path+'test1-riv2r-2021-04-20\\videos\\test1.mp4'
+video_name = 'test1.mp4'
 
-deeplabcut.extract_frames(config_path,mode="automatic",algo="kmeans")
+origin_video_path = father_path+'\\'+'originvideos'+'\\'+video_name
 
-deeplabcut.label_frames(config_path)
+# deeplabcut.create_new_project('test','riv2r',[origin_video_path],working_directory=father_path,copy_videos=True)
 
-deeplabcut.check_labels(config_path)
+# 编辑config.yaml文件，可以编辑识别点的个数等
 
-deeplabcut.create_training_dataset(config_path)
+project_name = 'test-riv2r-2021-04-20'
 
-deeplabcut.train_network(config_path)
+Proj = proj(father_path,project_name,video_name)
 
-deeplabcut.evaluate_network(config_path,plotting=True)
+# deeplabcut.extract_frames(Proj.config_path,mode="automatic",algo="kmeans")
 
-deeplabcut.analyze_videos(config_path,[dir_path+'test1-riv2r-2021-04-20\\videos\\'],videotype='.mp4',save_as_csv=True)
+# deeplabcut.label_frames(Proj.config_path)
 
-deeplabcut.create_labeled_video(config_path, [video_path],videotype=".mp4")
+# deeplabcut.check_labels(Proj.config_path)
 
-deeplabcut.plot_trajectories(config_path,[video_path], showfigures=True)
-'''
+# deeplabcut.create_training_dataset(Proj.config_path)
+
+# 编辑dlc-models\iteration-0\testApr20-trainset95shuffle1\train\pose_cfg.yaml，可编辑每几次循环终端显示一次训练信息(display_iters)，也可编辑记录训练快照(snapshot)的迭代次数(save_iters)
+
+# deeplabcut.train_network(Proj.config_path)
+
+# deeplabcut.evaluate_network(Proj.config_path,plotting=True)
+
+# deeplabcut.analyze_videos(Proj.config_path,[Proj.video_path],videotype='.mp4',save_as_csv=True)
+
+# 下行生成带有标记视频的语句要在终端运行
+# deeplabcut.create_labeled_video(Proj.config_path, [Proj.video_path],videotype=".mp4")
+
+# deeplabcut.plot_trajectories(Proj.config_path,[Proj.video_path], showfigures=True)
