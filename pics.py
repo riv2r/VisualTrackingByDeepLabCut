@@ -1,15 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import csv
 
-data = pd.read_csv(r'C:\Users\user\Desktop\XJTUGraduationProject\VisualTrackingByDeepLabCut\test-riv2r-2021-04-20\videos\test1DLC_resnet_50_testApr20shuffle1_5000.csv')
 
 xdata = []
 ydata = []
-xdata = data.loc[2:,'DLC_resnet_50_testApr20shuffle1_5000'].values
-ydata = data.loc[2:,'DLC_resnet_50_testApr20shuffle1_5000.1'].values
-xdata =[float(x) for x in xdata]
-ydata = [float(x) for x in ydata]
-plt.plot(xdata,ydata,'b-',linewidth=1)
-plt.axis('equal')
+
+with open(r'C:\Users\user\Desktop\XJTUGraduationProject\VisualTrackingByDeepLabCut\test-riv2r-2021-04-20\dlc-models\iteration-0\testApr20-trainset95shuffle1\train\learning_stats.csv','r') as csvfile:
+    reader = csv.reader(csvfile)
+    xdata = [row[0] for row in reader]
+    
+with open(r'C:\Users\user\Desktop\XJTUGraduationProject\VisualTrackingByDeepLabCut\test-riv2r-2021-04-20\dlc-models\iteration-0\testApr20-trainset95shuffle1\train\learning_stats.csv','r') as csvfile:
+    reader = csv.reader(csvfile)
+    ydata = [row[1] for row in reader]
+
+xdata = [float(data) for data in xdata]
+ydata = [float(data) for data in ydata]
+plt.plot(xdata[:100],ydata[:100],'b+-',linewidth=1)
+# plt.axis('equal')
 plt.show()
