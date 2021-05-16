@@ -10,15 +10,15 @@ class proj:
 
 father_path = os.getcwd()
 
-video_name = 'test1.mp4'
+video_name = 'test.mp4'
 
-origin_video_path = father_path+'\\'+'originvideos'+'\\'+video_name
+origin_video_path = father_path+'\\'+'originvideo'+'\\'+video_name
 
 # deeplabcut.create_new_project('test','riv2r',[origin_video_path],working_directory=father_path,copy_videos=True)
 
 # 编辑config.yaml文件，可以编辑识别点的个数等
 
-project_name = 'test-riv2r-2021-04-20'
+project_name = 'test-riv2r-2021-05-16'
 
 Proj = proj(father_path,project_name,video_name)
 
