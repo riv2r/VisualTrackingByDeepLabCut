@@ -1,6 +1,13 @@
 import deeplabcut
 import os
 
+'''
+需要补充以下文件夹及文件:
+1..vscode:运行环境配置文件夹 内部运行环境配置文件
+2.originvideo:素材视频文件夹 内部素材视频
+3.test-riv2r-xxxx-xx-xx:DeepLabCut项目文件夹 内部项目文件
+'''
+
 class proj:
 
     def __init__(self,father_path,project_name,video_name):
