@@ -1,5 +1,7 @@
 import deeplabcut
 import os
+import numpy as np
+import csv
 
 '''
 需要补充以下文件夹及文件:
@@ -49,3 +51,22 @@ Proj = proj(father_path,project_name,video_name)
 # deeplabcut.create_labeled_video(Proj.config_path, [Proj.video_path],videotype=".mp4")
 
 # deeplabcut.plot_trajectories(Proj.config_path,[Proj.video_path], showfigures=True)
+
+# 保存训练过程数据
+
+xdata = []
+ydata = []
+
+with open(r'C:\Users\user\Desktop\XJTUGraduationProject\VisualTrackingByDeepLabCut\test-riv2r-2021-05-16\dlc-models\iteration-0\testMay16-trainset95shuffle1\train\learning_stats.csv','r') as csvfile:
+    reader = csv.reader(csvfile)
+    xdata = [row[0] for row in reader]
+    
+with open(r'C:\Users\user\Desktop\XJTUGraduationProject\VisualTrackingByDeepLabCut\test-riv2r-2021-05-16\dlc-models\iteration-0\testMay16-trainset95shuffle1\train\learning_stats.csv','r') as csvfile:
+    reader = csv.reader(csvfile)
+    ydata = [row[1] for row in reader]
+
+xdata = np.mat([float(data) for data in xdata]).reshape(-1,1)
+ydata = np.mat([float(data) for data in ydata]).reshape(-1,1)
+data = np.hstack((xdata,ydata))
+
+np.savetxt('data.txt', data, fmt='%f', delimiter=',')
